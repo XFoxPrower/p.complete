@@ -17,5 +17,6 @@ p.complete is a BetterDiscord plugin that gives you IRC-style auto-completion on
 * Enable it in BetterDiscord's preferences
  
 ## Credits
-Created by [XFox Prower](https://github.com/XFoxPrower/p.complete)
+Created by [XFox Prower](https://github.com/XFoxPrower/p.complete).
+
 Commissioned by Negi.
