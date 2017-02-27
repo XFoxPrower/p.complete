@@ -11,7 +11,7 @@ function pcomplete()
 		listener;
 	_.getName=()=>'p.complete';
 	_.getDescription=()=>'IRC-style auto-complete';
-	_.getVersion=()=>'0.01';
+	_.getVersion=()=>'0.02';
 	_.getAuthor=()=>'XFox Prower';
 	_.load=function(){};
 	_.start=function()
@@ -49,37 +49,45 @@ function pcomplete()
 								idx=0;
 								}
 							resx=results[idx];
-							textarea.value=subLeft+' @'+resx.username+'#'+resx.disc+' ';
+							textarea.value=subLeft+'@'+resx.username+'#'+resx.disc+' ';
 							}
 						else
 							{
 							subLeft=val.substring(0,sep);
+							if(subLeft)
+								{
+								subLeft+=' ';
+								}
 							search=val.substring(sep+1,val.length).toLowerCase();
 							if(search)
 								{
-								groups=section.getElementsByClassName('channel-members-wrap')[0].parentNode;
-								groups=groups[Object.keys(groups)[0]]._renderedChildren['.1']._instance.state.memberGroups;
-								leni=groups.length;
-								for(i=0;i<leni;i++)
+								groups=section.getElementsByClassName('channel-members-wrap')[0];
+								if(groups)
 									{
-									xi=groups[i].users;
-									lenj=xi.length;
-									for(j=0;j<lenj;j++)
+									groups=groups.parentNode;
+									groups=groups[Object.keys(groups)[0]]._renderedChildren['.1']._instance.state.memberGroups;
+									leni=groups.length;
+									for(i=0;i<leni;i++)
 										{
-										xj=xi[j];
-										nick=xj.nick;
-										user=xj.user;
-										xj={nick:nick,username:user.username,disc:user.discriminator};
-										if(nick.toLowerCase().startsWith(search))
+										xi=groups[i].users;
+										lenj=xi.length;
+										for(j=0;j<lenj;j++)
 											{
-											results.push(xj);
+											xj=xi[j];
+											nick=xj.nick;
+											user=xj.user;
+											xj={nick:nick,username:user.username,disc:user.discriminator};
+											if(nick.toLowerCase().startsWith(search))
+												{
+												results.push(xj);
+												}
 											}
 										}
 									}
 								if(results.length)
 									{
 									resx=results[idx];
-									textarea.value=subLeft+' @'+resx.username+'#'+resx.disc+' ';
+									textarea.value=subLeft+'@'+resx.username+'#'+resx.disc+' ';
 									}
 								entry=1;
 								}
