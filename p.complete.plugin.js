@@ -11,7 +11,7 @@ function pcomplete()
 		listener;
 	_.getName=()=>'p.complete';
 	_.getDescription=()=>'IRC-style auto-complete';
-	_.getVersion=()=>'0.02';
+	_.getVersion=()=>'0.03';
 	_.getAuthor=()=>'XFox Prower';
 	_.load=function(){};
 	_.start=function()
@@ -40,6 +40,10 @@ function pcomplete()
 						{
 						val=textarea.value;
 						sep=val.lastIndexOf(' ');
+						if(!~sep)
+							{
+							sep=val.lastIndexOf('\n');
+							}
 						leni=results.length;
 						if(entry&&leni)
 							{
@@ -53,11 +57,7 @@ function pcomplete()
 							}
 						else
 							{
-							subLeft=val.substring(0,sep);
-							if(subLeft)
-								{
-								subLeft+=' ';
-								}
+							subLeft=val.substring(0,sep+1);
 							search=val.substring(sep+1,val.length).toLowerCase();
 							if(search)
 								{
