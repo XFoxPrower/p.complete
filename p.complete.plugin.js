@@ -29,6 +29,7 @@ function pcomplete()
 				if(textarea)
 					{
 					textarea.removeEventListener('keydown',tabWatch);
+					textarea=null;
 					}
 				}
 			}
@@ -160,7 +161,7 @@ function pcomplete()
 
 	_.getName=()=>'p.complete';
 	_.getDescription=()=>'IRC-style auto-complete';
-	_.getVersion=()=>'0.04';
+	_.getVersion=()=>'0.05';
 	_.getAuthor=()=>'XFox Prower';
 	_.load=()=>{}
 	_.start=()=>
@@ -173,6 +174,6 @@ function pcomplete()
 	_.stop=()=>
 		{
 		unobs(1);
-		section=obs_sectionChange=obs_roomChange=textarea=subLeft=entry=results=idx=null;
+		section=subLeft=entry=results=idx=null;
 		};
 	}
