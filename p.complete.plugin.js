@@ -109,8 +109,7 @@ function pcomplete()
 					groups=section.getElementsByClassName('channel-members-wrap')[0];
 					if(groups)
 						{
-						groups=groups.parentNode;
-						groups=groups[Object.keys(groups)[0]]._renderedChildren['.1']._instance.state.memberGroups;
+						groups=groups.parentNode[Object.keys(groups)[0]]._renderedChildren['.1']._instance.state.memberGroups;
 						leni=groups.length;
 						for(i=0;i<leni;i++)
 							{
@@ -161,7 +160,7 @@ function pcomplete()
 
 	_.getName=()=>'p.complete';
 	_.getDescription=()=>'IRC-style auto-complete';
-	_.getVersion=()=>'0.05';
+	_.getVersion=()=>'0.06';
 	_.getAuthor=()=>'XFox Prower';
 	_.load=()=>{}
 	_.start=()=>
